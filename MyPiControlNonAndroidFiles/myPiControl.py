@@ -13,6 +13,8 @@ from datetime import datetime
 dht_sensor_port = 7  # Connect the DHt sensor to port D7
 # Leave at 0 if using blue-coloured sensor, change to 1 if using white coloured sensor
 dht_sensor_type = 0
+light_sensor = 1  # Connect light sensor to A1
+ultrasonic_ranger = 4  # Connect ultrasonic sensor to port D4
 
 
 def getTemperature():  # Function that returns temperature value from the sensor
@@ -30,6 +32,16 @@ def getHumidity():  # Function that returns humidity value from the sensor
     time.sleep(1)
     return hum
 
+def getUltrasonic():  # Function that gets ultrasonic distance and turns on the relay if distance = 30 or less, otherwise relay is off
+    time.sleep(1)
+    distance = ultrasonicRead(ultrasonic_ranger)
+    return distance  # Returning distance of the relay
+
+def getLight():
+    time.sleep(1)
+    lightValue = grovepi.analogRead(light_sensor)
+    return lightValue
+
 
 
 
@@ -42,6 +54,8 @@ def getReadings():  # Function that pulls data from other methods and stores the
     sensorReading = {}
     sensorReading["Temperature"] = getTemperature()
     sensorReading["Humidity"] = getHumidity()
+    sensorReading["Distance"] = getUltrasonic()
+    sensorReading["Light Level"] = getLight()
     return sensorReading
 
 
