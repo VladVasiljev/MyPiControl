@@ -2,7 +2,7 @@ import dweepy
 
 def publish():
     dict = {}
-    dict["publish"] = "true"
-    dweepy.dweet_for('rand', dict)
+    dict["BuzzerStatus"] = "false"
+    dweepy.dweet_for('mypicontrolboard', dict)
 
 publish()
