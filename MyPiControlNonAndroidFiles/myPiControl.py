@@ -15,6 +15,9 @@ dht_sensor_port = 7  # Connect the DHt sensor to port D7
 dht_sensor_type = 0
 light_sensor = 1  # Connect light sensor to A1
 ultrasonic_ranger = 4  # Connect ultrasonic sensor to port D4
+buzzer_pin = 2		#Port for buzzer
+
+pinMode(buzzer_pin,"OUTPUT")	# Assign mode for buzzer as output
 
 
 def getTemperature():  # Function that returns temperature value from the sensor
@@ -42,6 +45,9 @@ def getLight():
     lightValue = grovepi.analogRead(light_sensor)
     return lightValue
 
+def getBuzzer():
+    
+
 
 
 
@@ -55,8 +61,10 @@ def getReadings():  # Function that pulls data from other methods and stores the
     sensorReading["Temperature"] = getTemperature()
     sensorReading["Humidity"] = getHumidity()
     sensorReading["Distance"] = getUltrasonic()
-    sensorReading["Light Level"] = getLight()
+    sensorReading["LightLevel"] = getLight()
     return sensorReading
+
+
 
 
 
