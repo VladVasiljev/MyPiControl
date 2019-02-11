@@ -18,6 +18,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
 
     private RequestQueue mQueue;
     private TextView view;
+    public static String getBuzzerStatusValue;
     //Class that controls the buzzer simple on and off function
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,27 +37,28 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
                 .getRequestQueue();
 
     }
-
+    String LEDStatusValue = LEDControl.getLEDStatusValue;
     @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
 
             case R.id.offButton:
-                String url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=false&LEDStatus=true";
+                String url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=false&LEDStatus="+LEDStatusValue;
                 CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.POST, url,
                         new JSONObject(), this, this);
                 //jsonRequest.setTag("test");
                 mQueue.add(jsonRequest);
+                getBuzzerStatusValue = "false";
                 break;
 
             case R.id.onButton:
-                url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=true&LEDStatus=false";
+                url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=true&LEDStatus="+LEDStatusValue;
                 jsonRequest = new CustomJSONRequest(Request.Method.POST, url,
                         new JSONObject(), this, this);
                // jsonRequest.setTag("test");
                 mQueue.add(jsonRequest);
-
+                getBuzzerStatusValue = "true";
                 break;
 
             default:
