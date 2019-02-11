@@ -14,7 +14,7 @@ import com.android.volley.VolleyError;
 
 import org.json.JSONObject;
 
-public class buzzerControl extends AppCompatActivity implements View.OnClickListener, Response.Listener, Response.ErrorListener {
+public class LEDControl extends AppCompatActivity implements View.OnClickListener, Response.Listener, Response.ErrorListener {
 
     private RequestQueue mQueue;
     private TextView view;
@@ -22,7 +22,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buzzer_control);
+        setContentView(R.layout.activity_ledcontrol);
 
         Button offButton = findViewById(R.id.offButton);
         Button onButton = findViewById(R.id.onButton);
@@ -30,7 +30,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
         offButton.setOnClickListener(this);
         onButton.setOnClickListener(this);
 
-        view = findViewById(R.id.textView);
+        view = findViewById(R.id.textView2);
 
         mQueue = CustomQueue.getInstance(this.getApplicationContext())
                 .getRequestQueue();
@@ -43,20 +43,19 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
 
             case R.id.offButton:
-                String url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=false&LEDStatus=true";
-                CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.POST, url,
+                String url = "https://dweet.io/dweet/for/mypicontrolboard?LEDStatus=false&BuzzerStatus=false";
+                CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
-                //jsonRequest.setTag("test");
+                jsonRequest.setTag("test");
                 mQueue.add(jsonRequest);
                 break;
 
             case R.id.onButton:
-                url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=true&LEDStatus=false";
-                jsonRequest = new CustomJSONRequest(Request.Method.POST, url,
+                url = "https://dweet.io/dweet/for/mypicontrolboard?LEDStatus=true&BuzzerStatus=false";
+                jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
-               // jsonRequest.setTag("test");
+                jsonRequest.setTag("test");
                 mQueue.add(jsonRequest);
-
                 break;
 
             default:

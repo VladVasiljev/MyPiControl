@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         goToBuzzer();
+        goToLEDLight();
     }
 
     private void goToBuzzer() {//Method that brings us to Computer stat screen
@@ -22,6 +23,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, buzzerControl.class);
+                intent.putExtra("info", "This is activity from card item index  ");
+                startActivity(intent);
+
+            }
+        });
+    }
+    private void goToLEDLight() {//Method that brings us to Computer stat screen
+        CardView ledLight = findViewById(R.id.LEDLight);//computerStat equals computerStatCardView
+        ledLight.setOnClickListener(new View.OnClickListener() {//Creating a click listener
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LEDControl.class);
                 intent.putExtra("info", "This is activity from card item index  ");
                 startActivity(intent);
 
