@@ -47,7 +47,7 @@ publisher_state = False
 def listener(publisher):
     for dweet in dweepy.listen_for_dweets_from('mypicontrolboard'):
         content = dweet["content"]
-        should_publish = content["BuzzerStatus"]
+        should_publish = content["LEDStatus"]
         print should_publish
         if should_publish == "true":
             # start the publisher thread
@@ -62,21 +62,14 @@ def listener(publisher):
     
 def publisher_method_dan():
     while publisher_state:
-        time.sleep(1)
-        #result = dweepy.dweet_for('mypicontrolboard', {"BuzzerStatus": "true"})
-        digitalWrite(buzzer_pin,1)	
-        #print result
+        #result = dweepy.dweet_for('mypicontrolboard', {"LEDStatus": "true"})
+        grovepi.analogWrite(led,1000/4)
+       # print result
         time.sleep(1)
     print "publishing ending"
-    digitalWrite(buzzer_pin,0)
+    grovepi.analogWrite(led,0/4)
     
-def getReadings():  # Function that pulls data from other methods and stores them under sensorReading
-    sensorReading = {}
-    sensorReading["Temperature"] = getTemperature()
-    sensorReading["Humidity"] = getHumidity()
-    sensorReading["Distance"] = getUltrasonic()
-    sensorReading["LightLevel"] = getLight()
-    return sensorReading
+
     
 publisher_thread = Thread(target=publisher_method_dan)
 listener_thread = Thread(target=listener, args=(publisher_thread,))
