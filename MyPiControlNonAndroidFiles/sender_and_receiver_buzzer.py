@@ -69,6 +69,7 @@ def publisher_method_dan():
         time.sleep(1)
     print "publishing ending"
     digitalWrite(buzzer_pin,0)
+<<<<<<< HEAD:MyPiControlNonAndroidFiles/sender_and_receiver.py
 
     #LED Lights listner
 
@@ -96,10 +97,11 @@ def publisher_method_dan1():
         time.sleep(1)
     print "publishing ending"
     grovepi.analogWrite(led,0/4)
+=======
+>>>>>>> c3e311703956890105dbe710e203d887b0283142:MyPiControlNonAndroidFiles/sender_and_receiver_buzzer.py
     
 
-    
-    
+
 def getReadings():  # Function that pulls data from other methods and stores them under sensorReading
     sensorReading = {}
     sensorReading["Temperature"] = getTemperature()
@@ -107,12 +109,10 @@ def getReadings():  # Function that pulls data from other methods and stores the
     sensorReading["Distance"] = getUltrasonic()
     sensorReading["LightLevel"] = getLight()
     return sensorReading
-    
+
 publisher_thread = Thread(target=publisher_method_dan)
 listener_thread = Thread(target=listener, args=(publisher_thread,))
 listener_thread.start()
+    
 
-publisher_thread1 = Thread(target=publisher_method_dan1)
-listener_thread1 = Thread(target=listener1, args=(publisher_thread1,))
-listener_thread1.start()
- 
+
