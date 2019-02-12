@@ -72,7 +72,7 @@ def publisher_method_dan():
 
     #LED Lights listner
 
-    def listener1(publisher1):
+def listener1(publisher1):
     for dweet in dweepy.listen_for_dweets_from('mypicontrolboard'):
         content = dweet["content"]
         should_publish = content["LEDStatus"]
