@@ -69,37 +69,6 @@ def publisher_method_dan():
         time.sleep(1)
     print "publishing ending"
     digitalWrite(buzzer_pin,0)
-<<<<<<< HEAD:MyPiControlNonAndroidFiles/sender_and_receiver.py
-
-    #LED Lights listner
-
-def listener1(publisher1):
-    for dweet in dweepy.listen_for_dweets_from('mypicontrolboard'):
-        content = dweet["content"]
-        should_publish = content["LEDStatus"]
-        print should_publish
-        if should_publish == "true":
-            # start the publisher thread
-            global publisher_state
-            publisher_state = True
-            if not publisher.is_alive():
-                publisher = Thread(target=publisher_method_dan1)
-            publisher.start()
-        else:
-            publisher_state = False
-            print "wasn't true"
-    
-def publisher_method_dan1():
-    while publisher_state:
-        #result = dweepy.dweet_for('mypicontrolboard', {"LEDStatus": "true"})
-        grovepi.analogWrite(led,1000/4)
-       # print result
-        time.sleep(1)
-    print "publishing ending"
-    grovepi.analogWrite(led,0/4)
-=======
->>>>>>> c3e311703956890105dbe710e203d887b0283142:MyPiControlNonAndroidFiles/sender_and_receiver_buzzer.py
-    
 
 
 def getReadings():  # Function that pulls data from other methods and stores them under sensorReading
