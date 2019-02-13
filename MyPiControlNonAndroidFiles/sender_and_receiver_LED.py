@@ -18,6 +18,8 @@ pinMode(buzzer_pin, "OUTPUT")  # Assign mode for buzzer as output
 grovepi.pinMode(led, "OUTPUT")
 
 
+            
+
 def getTemperature():  # Function that returns temperature value from the sensor
     [temp, hum] = dht(dht_sensor_port, dht_sensor_type)
     # if isnan(temp) is True:
@@ -68,9 +70,9 @@ def listener(publisher):
 
 def publisher_method_dan():
     while publisher_state:
-        # result = dweepy.dweet_for('mypicontrolboard', {"LEDStatus": "true"})
-        grovepi.analogWrite(led, 1000 / 4)
-        # print result
+        #result = dweepy.dweet_for('mypicontrolboard', {"LEDStatus": "true"})
+        grovepi.analogWrite(led,1000/4)
+       # print result
         time.sleep(1)
     print "publishing ending"
     grovepi.analogWrite(led, 0 / 4)
