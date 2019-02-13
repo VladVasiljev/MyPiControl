@@ -45,7 +45,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
 
             case R.id.offButton:
                 String url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=false&LEDStatus="+LEDStatusValue;
-                CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.POST, url,
+                CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 //jsonRequest.setTag("test");
                 mQueue.add(jsonRequest);
@@ -54,7 +54,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
 
             case R.id.onButton:
                 url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=true&LEDStatus="+LEDStatusValue;
-                jsonRequest = new CustomJSONRequest(Request.Method.POST, url,
+                jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                // jsonRequest.setTag("test");
                 mQueue.add(jsonRequest);
