@@ -17,6 +17,7 @@ ultrasonic_ranger = 4  # Connect ultrasonic sensor to port D4
 pinMode(buzzer_pin,"OUTPUT")	# Assign mode for buzzer as output
 grovepi.pinMode(led,"OUTPUT")
 
+
 def getTemperature():  # Function that returns temperature value from the sensor
     [temp, hum] = dht(dht_sensor_port, dht_sensor_type)
     # if isnan(temp) is True:
@@ -43,11 +44,13 @@ def getLight():
     return lightValue
 
 publisher_state = False
+sampleRate = 5
 
 def listener(publisher):
     for dweet in dweepy.listen_for_dweets_from('mypicontrolboard'):
         content = dweet["content"]
         should_publish = content["BuzzerStatus"]
+     
         print should_publish
         if should_publish == "true":
             # start the publisher thread
@@ -59,13 +62,14 @@ def listener(publisher):
         else:
             publisher_state = False
             print "wasn't true"
+            
+ 
     
 def publisher_method_dan():
     while publisher_state:
-        time.sleep(1)
-        #result = dweepy.dweet_for('mypicontrolboard', {"BuzzerStatus": "true"})
+        result = dweepy.dweet_for('mypistats', getReadings())
         digitalWrite(buzzer_pin,1)	
-        #print result
+        print result
         time.sleep(1)
     print "publishing ending"
     digitalWrite(buzzer_pin,0)
