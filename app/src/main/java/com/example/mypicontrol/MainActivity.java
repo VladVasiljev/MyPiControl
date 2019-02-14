@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         goToBuzzer();
         goToLEDLight();
+        gotoDweetData();
     }
 
     private void goToBuzzer() {//Method that brings us to Computer stat screen
@@ -35,6 +36,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, LEDControl.class);
+                intent.putExtra("info", "This is activity from card item index  ");
+                startActivity(intent);
+
+            }
+        });
+    }
+
+    private void gotoDweetData() {//Method that brings us to Computer stat screen
+        CardView dweetData = findViewById(R.id.dweetData);//computerStat equals computerStatCardView
+        dweetData.setOnClickListener(new View.OnClickListener() {//Creating a click listener
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, dweetData.class);
                 intent.putExtra("info", "This is activity from card item index  ");
                 startActivity(intent);
 
