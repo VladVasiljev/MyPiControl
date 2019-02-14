@@ -43,17 +43,21 @@ def getLight():
     return lightValue
 
 publisher_state = False
+sampleRate = 0
 
 def listener(publisher):
     print("READY")
     for dweet in dweepy.listen_for_dweets_from('mypicontrolboard'):
         content = dweet["content"]
         should_publish = content["BuzzerStatus"]
+        sample = content["SampleRate"]
         print should_publish
         if should_publish == "true":
             # start the publisher thread
             global publisher_state
             publisher_state = True
+            global sampleRate
+            sampleRate = sample
             if not publisher.is_alive():
                 publisher = Thread(target=publisher_method_dan)
             publisher.start()
@@ -64,6 +68,8 @@ def listener(publisher):
 def publisher_method_dan():
     while publisher_state:
         digitalWrite(buzzer_pin,1)
+        print sampleRate#Printing sample view for debug reasons
+        time.sleep(sampleRate)#Sample rate timer set by the user
         result = dweepy.dweet_for('mypistats',getReadings())
         print result
         time.sleep(1)
