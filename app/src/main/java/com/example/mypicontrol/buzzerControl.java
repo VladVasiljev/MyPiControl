@@ -18,10 +18,11 @@ import org.json.JSONObject;
 public class buzzerControl extends AppCompatActivity implements View.OnClickListener, Response.Listener, Response.ErrorListener {
 
     private RequestQueue mQueue;
-    private TextView view;
+    private TextView dweetResponseMessage;
     public static String getBuzzerStatusValue;
-    TextView tvProgressLabel;
-    int finalprogress;
+    TextView seekBarValueTV;
+    String LEDStatusValue = LEDControl.getLEDStatusValue;//Getting Value
+    int getSeekBarValue;//Gets the value of the seekBark and then it gets passed to the url
 
     //Class that controls the buzzer simple on and off function
     @Override
@@ -29,6 +30,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buzzer_control);
 
+        //Assigning names to buttons
         Button offButton = findViewById(R.id.offButton);
         Button onButton = findViewById(R.id.onButton);
         Button sampleRateButton = findViewById(R.id.updateSampleRate);
@@ -38,15 +40,14 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
         sampleRateButton.setOnClickListener(this);//listener for sample rate button
 
         //Seekbar was implemented using this https://stackoverflow.com/questions/8629535/implementing-a-slider-seekbar-in-android
-        // set a change listener on the SeekBar
-        SeekBar seekBar = findViewById(R.id.seekBar);
+        SeekBar seekBar = findViewById(R.id.seekBar);//Assigning seekbar as seekBar
         seekBar.setOnSeekBarChangeListener(seekBarChangeListener);
-        int progress = seekBar.getProgress();
-        tvProgressLabel = findViewById(R.id.progressTxt);
-        tvProgressLabel.setText("Progress: " + progress);
+        int seekBarValue = seekBar.getProgress();//Getting value of the seekbar on create of the dweetResponseMessage
+        seekBarValueTV = findViewById(R.id.seekBarValue);
+        seekBarValueTV.setText("Current Value: " + seekBarValue);
 
 
-        view = findViewById(R.id.textView);
+        dweetResponseMessage = findViewById(R.id.dweetResponseTV);
 
         mQueue = CustomQueue.getInstance(this.getApplicationContext())
                 .getRequestQueue();
@@ -57,10 +58,10 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
     SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
 
         @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        public void onProgressChanged(SeekBar seekBar, int seekBarValue, boolean fromUser) {
             // updated continuously as the user slides the thumb
-            tvProgressLabel.setText("Progress: " + progress);
-            finalprogress = progress;
+            seekBarValueTV.setText("Progress: " + seekBarValue);
+            getSeekBarValue = seekBarValue;
         }
 
         @Override
@@ -74,8 +75,6 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
         }
     };
 
-
-    String LEDStatusValue = LEDControl.getLEDStatusValue;//Getting LEDStatus value from ledcontrol class
 
     @Override
     public void onClick(View view) {
@@ -100,8 +99,8 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
                 getBuzzerStatusValue = "true";
                 break;
 
-                case R.id.updateSampleRate:
-                url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=true&LEDStatus=" + LEDStatusValue + "&SampleRate=" +finalprogress ;
+            case R.id.updateSampleRate:
+                url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=true&LEDStatus=" + LEDStatusValue + "&SampleRate=" + getSeekBarValue;
                 jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 // jsonRequest.setTag("test");
@@ -116,13 +115,13 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onErrorResponse(VolleyError error) {
-
+        dweetResponseMessage.setText("Volley Error has happened, Oops, please check your internet connection and tap on the button again"+"\n \n"+getApplicationContext()+ error.toString());
     }
 
     @Override
     public void onResponse(Object response) {
-        Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-        view.setText(response.toString());
+        Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+        dweetResponseMessage.setText(response.toString());
     }
 
 

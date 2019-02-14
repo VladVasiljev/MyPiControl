@@ -37,13 +37,13 @@
         android:textColor="@android:color/white" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/dweetResponseTV"
         android:layout_width="362dp"
         android:layout_height="86dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="178dp"
-        android:text="TextView" />
+        android:text="Dweets Response Displayed Here" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -63,13 +63,13 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="161dp"
         android:background="@drawable/greenbutton"
         android:text="Update Sample Rate"
         android:textColor="@android:color/white" />
 
     <TextView
-        android:id="@+id/progressTxt"
+        android:id="@+id/seekBarValue"
         android:layout_width="361dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
