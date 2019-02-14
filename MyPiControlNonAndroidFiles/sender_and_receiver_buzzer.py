@@ -45,7 +45,7 @@ def getLight():
 publisher_state = False
 
 def listener(publisher):
-    print("READY")
+    print("Buzzer+Dweet Sensor Reading Ready")
     for dweet in dweepy.listen_for_dweets_from('mypicontrolboard'):
         content = dweet["content"]
         should_publish = content["BuzzerStatus"]
@@ -57,7 +57,7 @@ def listener(publisher):
             publisher_state = True
             global sampleRate
             sampleRate = sample
-            if publisher.is_alive():
+            if not publisher.is_alive():
                 publisher = Thread(target=publisher_method_dan)
             publisher.start()
         else:
@@ -89,5 +89,41 @@ def getReadings():  # Function that pulls data from other methods and stores the
 publisher_thread = Thread(target=publisher_method_dan)
 listener_thread = Thread(target=listener, args=(publisher_thread,))
 listener_thread.start()
+
+
+publisher_state1 = False
+
+
+def listener1(publisher1):
+    print("LED Thread Ready")
+    for dweet in dweepy.listen_for_dweets_from('mypicontrolboard2'):
+        content = dweet["content"]
+        should_publish = content["LEDStatus"]
+        print should_publish
+        if should_publish == "true":
+            # start the publisher thread
+            global publisher_state1
+            publisher_state1 = True
+            if not publisher1.is_alive():
+                publisher1 = Thread(target=publisher_method_dan1)
+            publisher1.start()
+        else:
+            publisher_state1 = False
+            print "wasn't true 2"
+
+
+def publisher_method_dan1():
+    while publisher_state1:
+        #result = dweepy.dweet_for('mypicontrolboard', {"LEDStatus": "true"})
+        grovepi.analogWrite(led,1000/4)
+       # print result
+        time.sleep(1)
+    print "publishing ending 2"
+    grovepi.analogWrite(led, 0 / 4)
+
+
+publisher_thread1 = Thread(target=publisher_method_dan1)
+listener_thread1 = Thread(target=listener1, args=(publisher_thread1,))
+listener_thread1.start()
     
 

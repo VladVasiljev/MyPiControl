@@ -18,36 +18,6 @@ pinMode(buzzer_pin, "OUTPUT")  # Assign mode for buzzer as output
 grovepi.pinMode(led, "OUTPUT")
 
 
-            
-
-def getTemperature():  # Function that returns temperature value from the sensor
-    [temp, hum] = dht(dht_sensor_port, dht_sensor_type)
-    # if isnan(temp) is True:
-    # raise TypeError('The value returned from temperature sensor is not a number,this could mean the sensor is plugged out from port D7')
-    time.sleep(1)
-    return temp
-
-
-def getHumidity():  # Function that returns humidity value from the sensor
-    [temp, hum] = dht(dht_sensor_port, dht_sensor_type)
-    # if isnan(temp) is True:
-    # raise TypeError('The value returned from humidity sensor is not a number,this could mean the sensor is plugged out from port D7')
-    time.sleep(1)
-    return hum
-
-
-def getUltrasonic():  # Function that gets ultrasonic distance and turns on the relay if distance = 30 or less, otherwise relay is off
-    time.sleep(1)
-    distance = ultrasonicRead(ultrasonic_ranger)
-    return distance  # Returning distance of the relay
-
-
-def getLight():
-    time.sleep(1)
-    lightValue = grovepi.analogRead(light_sensor)
-    return lightValue
-
-
 publisher_state = False
 
 
