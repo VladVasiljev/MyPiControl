@@ -43,7 +43,6 @@ def getLight():
     return lightValue
 
 publisher_state = False
-sampleRate = 0
 
 def listener(publisher):
     print("READY")
@@ -58,7 +57,7 @@ def listener(publisher):
             publisher_state = True
             global sampleRate
             sampleRate = sample
-            if not publisher.is_alive():
+            if publisher.is_alive():
                 publisher = Thread(target=publisher_method_dan)
             publisher.start()
         else:
@@ -84,6 +83,8 @@ def getReadings():  # Function that pulls data from other methods and stores the
     sensorReading["Distance"] = getUltrasonic()
     sensorReading["LightLevel"] = getLight()
     return sensorReading
+
+
 
 publisher_thread = Thread(target=publisher_method_dan)
 listener_thread = Thread(target=listener, args=(publisher_thread,))
