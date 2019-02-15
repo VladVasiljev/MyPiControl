@@ -63,7 +63,7 @@ def listenerBuzzer(publisherBuzzer):
         else:
             publisher_state_buzzer = False
             print "wasn't true"
-            digitalWrite(buzzer_pin, 0)
+            digitalWrite(buzzer_pin, 0)#if the script crashes we can just press the off button and the sensors will turn off.
     
 def buzzer_publisher_method():
     while publisher_state_buzzer:
@@ -111,7 +111,7 @@ def listenerLED(publisherLED):
         else:
             publisher_state_for_led = False
             print "wasn't true 2"
-            grovepi.analogWrite(led, 0 / 4)
+            grovepi.analogWrite(led, 0 / 4)#if the script crashes we can just press the off button and the sensors will turn off.
 
 
 def led_publisher_method():
@@ -127,5 +127,12 @@ def led_publisher_method():
 publisher_thread_led = Thread(target=led_publisher_method)
 listener_thread_led = Thread(target=listenerLED, args=(publisher_thread_led,))
 listener_thread_led.start()
+
+while True:
+    try:
+        except KeyboardInterrupt:
+            grovepi.analogWrite(led, 0 / 4)
+            break
+
     
 
