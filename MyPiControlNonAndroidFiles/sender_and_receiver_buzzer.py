@@ -2,6 +2,7 @@ import dweepy
 import random
 import time
 import grovepi
+import math
 from grovepi import *
 
 from threading import Thread
@@ -127,12 +128,5 @@ def led_publisher_method():
 publisher_thread_led = Thread(target=led_publisher_method)
 listener_thread_led = Thread(target=listenerLED, args=(publisher_thread_led,))
 listener_thread_led.start()
-
-while True:
-    try:
-        except KeyboardInterrupt:
-            grovepi.analogWrite(led, 0 / 4)
-            break
-
     
 
