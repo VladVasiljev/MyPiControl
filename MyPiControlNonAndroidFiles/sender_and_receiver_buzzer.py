@@ -101,11 +101,14 @@ def listenerLED(publisherLED):
     for dweet in dweepy.listen_for_dweets_from('mypicontrolboardLED'):
         content = dweet["content"]
         ledStatus = content["LEDStatus"]
+        LEDbrightness = content["LightLevel"]
         print ledStatus
         if ledStatus == "true":
             # start the publisher thread
             global publisher_state_for_led
             publisher_state_for_led = True
+            global lightBrightness
+            lightBrightness = LEDbrightness
             if not publisherLED.is_alive():
                 publisherLED = Thread(target=led_publisher_method)
             publisherLED.start()
@@ -118,7 +121,7 @@ def listenerLED(publisherLED):
 def led_publisher_method():
     while publisher_state_for_led:
         #result = dweepy.dweet_for('mypicontrolboard', {"LEDStatus": "true"})
-        grovepi.analogWrite(led,1000/4)
+        grovepi.analogWrite(led,int(lightBrightness)/4)
        # print result
         time.sleep(1)
     print "publishing ending 2"
@@ -129,4 +132,3 @@ publisher_thread_led = Thread(target=led_publisher_method)
 listener_thread_led = Thread(target=listenerLED, args=(publisher_thread_led,))
 listener_thread_led.start()
     
-
