@@ -21,7 +21,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
     private TextView dweetResponseMessage;
     public static String getBuzzerStatusValue;
     TextView seekBarValueTV;
-    String LEDStatusValue = LEDControl.getLEDStatusValue;//Getting Value
+//    String LEDStatusValue = LEDControl.getLEDStatusValue;//Getting Value
    public static int getSeekBarValue;//Gets the value of the seekBark and then it gets passed to the url
 
     //Class that controls the buzzer simple on and off function
@@ -82,7 +82,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
 
             case R.id.offButton:
-                String url = "https://dweet.io/dweet/for/mypicontrolboardBuzzer?BuzzerStatus=false&LEDStatus=" + LEDStatusValue + "&SampleRate=0";
+                String url = "https://dweet.io/dweet/for/mypicontrolboardBuzzer?BuzzerStatus=false&"+"SampleRate=0";
                 CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 //jsonRequest.setTag("test");
@@ -91,7 +91,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.onButton:
-                url = "https://dweet.io/dweet/for/mypicontrolboardBuzzer?BuzzerStatus=true&LEDStatus=" + LEDStatusValue + "&SampleRate=0";
+                url = "https://dweet.io/dweet/for/mypicontrolboardBuzzer?BuzzerStatus=true&"+"SampleRate=0";
                 jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 // jsonRequest.setTag("test");
@@ -100,7 +100,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.updateSampleRate:
-                url = "https://dweet.io/dweet/for/mypicontrolboardBuzzer?BuzzerStatus=true&LEDStatus=" + LEDStatusValue + "&SampleRate=" + getSeekBarValue;
+                url = "https://dweet.io/dweet/for/mypicontrolboardBuzzer?BuzzerStatus=true&"+"&SampleRate=" + getSeekBarValue;
                 jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 // jsonRequest.setTag("test");

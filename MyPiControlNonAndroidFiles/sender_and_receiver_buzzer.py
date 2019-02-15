@@ -63,6 +63,7 @@ def listenerBuzzer(publisherBuzzer):
         else:
             publisher_state_buzzer = False
             print "wasn't true"
+            digitalWrite(buzzer_pin, 0)
     
 def buzzer_publisher_method():
     while publisher_state_buzzer:
@@ -110,6 +111,7 @@ def listenerLED(publisherLED):
         else:
             publisher_state_for_led = False
             print "wasn't true 2"
+            grovepi.analogWrite(led, 0 / 4)
 
 
 def led_publisher_method():

@@ -19,8 +19,10 @@ public class LEDControl extends AppCompatActivity implements View.OnClickListene
     private RequestQueue mQueue;
     private TextView dweetResponseMessage;//TV for displaying dweets responses
     public static String getLEDStatusValue;//string that gets the status of the led light true or false
-    String BuzzerStatusValue = buzzerControl.getBuzzerStatusValue;//Getting BuzzerStatusValue from buzzerControl class so we can use this as a memory feature (allows us to
-    int getSeekBarValue = buzzerControl.getSeekBarValue;
+
+    //Old implemention of the system
+//    String BuzzerStatusValue = buzzerControl.getBuzzerStatusValue;//Getting BuzzerStatusValue from buzzerControl class so we can use this as a memory feature (allows us to
+//    int getSeekBarValue = buzzerControl.getSeekBarValue;
     // remember the state of sensors and pass them on
 
     @Override
@@ -48,21 +50,21 @@ public class LEDControl extends AppCompatActivity implements View.OnClickListene
         switch (view.getId()) {
 
             case R.id.offButton:
-                String url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=false&BuzzerStatus=" + BuzzerStatusValue+"&SampleRate="+getSeekBarValue;
+                String url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=false";
                 CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest.setTag("test");
                 mQueue.add(jsonRequest);
-                getLEDStatusValue = "false";
+//                getLEDStatusValue = "false";
                 break;
 
             case R.id.onButton:
-                url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=true&BuzzerStatus=" + BuzzerStatusValue+"&SampleRate="+getSeekBarValue;
+                url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=true";
                 jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest.setTag("test");
                 mQueue.add(jsonRequest);
-                getLEDStatusValue = "true";
+//                getLEDStatusValue = "true";
                 break;
 
             default:
