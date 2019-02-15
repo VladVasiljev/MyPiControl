@@ -20,6 +20,7 @@ public class LEDControl extends AppCompatActivity implements View.OnClickListene
     private TextView dweetResponseMessage;//TV for displaying dweets responses
     public static String getLEDStatusValue;//string that gets the status of the led light true or false
     String BuzzerStatusValue = buzzerControl.getBuzzerStatusValue;//Getting BuzzerStatusValue from buzzerControl class so we can use this as a memory feature (allows us to
+    int getSeekBarValue = buzzerControl.getSeekBarValue;
     // remember the state of sensors and pass them on
 
     @Override
@@ -30,7 +31,7 @@ public class LEDControl extends AppCompatActivity implements View.OnClickListene
         //Assigning names to buttons
         Button offButton = findViewById(R.id.offButton);
         Button onButton = findViewById(R.id.onButton);
-        //Creating a on click listener for buttons
+        //Creating a on click listenerBuzzer for buttons
         offButton.setOnClickListener(this);
         onButton.setOnClickListener(this);
 
@@ -47,7 +48,7 @@ public class LEDControl extends AppCompatActivity implements View.OnClickListene
         switch (view.getId()) {
 
             case R.id.offButton:
-                String url = "https://dweet.io/dweet/for/mypicontrolboard?LEDStatus=false&BuzzerStatus=" + BuzzerStatusValue;
+                String url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=false&BuzzerStatus=" + BuzzerStatusValue+"&SampleRate="+getSeekBarValue;
                 CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest.setTag("test");
@@ -56,7 +57,7 @@ public class LEDControl extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.onButton:
-                url = "https://dweet.io/dweet/for/mypicontrolboard?LEDStatus=true&BuzzerStatus=" + BuzzerStatusValue;
+                url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=true&BuzzerStatus=" + BuzzerStatusValue+"&SampleRate="+getSeekBarValue;
                 jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest.setTag("test");

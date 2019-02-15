@@ -22,7 +22,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
     public static String getBuzzerStatusValue;
     TextView seekBarValueTV;
     String LEDStatusValue = LEDControl.getLEDStatusValue;//Getting Value
-    int getSeekBarValue;//Gets the value of the seekBark and then it gets passed to the url
+   public static int getSeekBarValue;//Gets the value of the seekBark and then it gets passed to the url
 
     //Class that controls the buzzer simple on and off function
     @Override
@@ -35,9 +35,9 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
         Button onButton = findViewById(R.id.onButton);
         Button sampleRateButton = findViewById(R.id.updateSampleRate);
 
-        offButton.setOnClickListener(this);//listener for on button
-        onButton.setOnClickListener(this);//listener for off button
-        sampleRateButton.setOnClickListener(this);//listener for sample rate button
+        offButton.setOnClickListener(this);//listenerBuzzer for on button
+        onButton.setOnClickListener(this);//listenerBuzzer for off button
+        sampleRateButton.setOnClickListener(this);//listenerBuzzer for sample rate button
 
         //Seekbar was implemented using this https://stackoverflow.com/questions/8629535/implementing-a-slider-seekbar-in-android
         SeekBar seekBar = findViewById(R.id.seekBar);//Assigning seekbar as seekBar
@@ -82,7 +82,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
 
             case R.id.offButton:
-                String url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=false&LEDStatus=" + LEDStatusValue + "&SampleRate=0";
+                String url = "https://dweet.io/dweet/for/mypicontrolboardBuzzer?BuzzerStatus=false&LEDStatus=" + LEDStatusValue + "&SampleRate=0";
                 CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 //jsonRequest.setTag("test");
@@ -91,7 +91,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.onButton:
-                url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=true&LEDStatus=" + LEDStatusValue + "&SampleRate=0";
+                url = "https://dweet.io/dweet/for/mypicontrolboardBuzzer?BuzzerStatus=true&LEDStatus=" + LEDStatusValue + "&SampleRate=0";
                 jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 // jsonRequest.setTag("test");
@@ -100,7 +100,7 @@ public class buzzerControl extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.updateSampleRate:
-                url = "https://dweet.io/dweet/for/mypicontrolboard?BuzzerStatus=true&LEDStatus=" + LEDStatusValue + "&SampleRate=" + getSeekBarValue;
+                url = "https://dweet.io/dweet/for/mypicontrolboardBuzzer?BuzzerStatus=true&LEDStatus=" + LEDStatusValue + "&SampleRate=" + getSeekBarValue;
                 jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 // jsonRequest.setTag("test");

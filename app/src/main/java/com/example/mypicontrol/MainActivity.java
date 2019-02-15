@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToBuzzer() {//Method that brings us to Computer stat screen
         CardView buzzerControl = findViewById(R.id.BuzzerCard);//computerStat equals computerStatCardView
-        buzzerControl.setOnClickListener(new View.OnClickListener() {//Creating a click listener
+        buzzerControl.setOnClickListener(new View.OnClickListener() {//Creating a click listenerBuzzer
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, buzzerControl.class);
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void goToLEDLight() {//Method that brings us to Computer stat screen
         CardView ledLight = findViewById(R.id.LEDLight);//computerStat equals computerStatCardView
-        ledLight.setOnClickListener(new View.OnClickListener() {//Creating a click listener
+        ledLight.setOnClickListener(new View.OnClickListener() {//Creating a click listenerBuzzer
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, LEDControl.class);
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void gotoDweetData() {//Method that brings us to Computer stat screen
         CardView dweetData = findViewById(R.id.dweetData);//computerStat equals computerStatCardView
-        dweetData.setOnClickListener(new View.OnClickListener() {//Creating a click listener
+        dweetData.setOnClickListener(new View.OnClickListener() {//Creating a click listenerBuzzer
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, dweetData.class);

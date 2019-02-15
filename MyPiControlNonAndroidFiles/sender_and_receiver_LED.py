@@ -18,7 +18,7 @@ pinMode(buzzer_pin, "OUTPUT")  # Assign mode for buzzer as output
 grovepi.pinMode(led, "OUTPUT")
 
 
-publisher_state = False
+publisher_state_buzzer = False
 
 
 def listener(publisher):
@@ -28,7 +28,7 @@ def listener(publisher):
         print should_publish
         if should_publish == "true":
             # start the publisher thread
-            global publisher_state
+            global publisher_state_buzzer
             publisher_state = True
             if not publisher.is_alive():
                 publisher = Thread(target=publisher_method_dan)
@@ -39,7 +39,7 @@ def listener(publisher):
 
 
 def publisher_method_dan():
-    while publisher_state:
+    while publisher_state_buzzer:
         #result = dweepy.dweet_for('mypicontrolboard', {"LEDStatus": "true"})
         grovepi.analogWrite(led,1000/4)
        # print result

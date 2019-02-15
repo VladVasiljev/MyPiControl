@@ -14,9 +14,9 @@ import java.util.Map;
 public class CustomJSONRequest extends JsonObjectRequest {
 
     public CustomJSONRequest(int method, String url, JSONObject jsonRequest,
-                             Response.Listener<JSONObject> listener,
+                             Response.Listener<JSONObject> listenerBuzzer,
                              Response.ErrorListener errorListener) {
-        super(method, url, jsonRequest, listener, errorListener);
+        super(method, url, jsonRequest, listenerBuzzer, errorListener);
     }
 
     @Override
