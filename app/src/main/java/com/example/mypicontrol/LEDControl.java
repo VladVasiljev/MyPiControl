@@ -80,14 +80,13 @@ public class LEDControl extends AppCompatActivity implements View.OnClickListene
     };
 
 
-
     @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
 
             case R.id.offButton:
-                String url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=false"+"&LightLevel=0";
+                String url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=false" + "&LightLevel=0";
                 CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest.setTag("test");
@@ -96,7 +95,7 @@ public class LEDControl extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.onButton:
-                url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=true"+"&LightLevel=1000";
+                url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=true" + "&LightLevel=1000";
                 jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest.setTag("test");
@@ -105,7 +104,7 @@ public class LEDControl extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.updateLight:
-                url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=true&"+"&LightLevel=" + getSeekBarValue;
+                url = "https://dweet.io/dweet/for/mypicontrolboardLED?LEDStatus=true&" + "&LightLevel=" + getSeekBarValue;
                 jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 // jsonRequest.setTag("test");
@@ -120,7 +119,7 @@ public class LEDControl extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        dweetResponseMessage.setText("Volley Error has happened, Oops, please check your internet connection and tap on the button again"+"\n \n"+getApplicationContext()+ error.toString());
+        dweetResponseMessage.setText("Volley Error has happened, Oops, please check your internet connection and tap on the button again" + "\n \n" + getApplicationContext() + error.toString());
 
     }
 

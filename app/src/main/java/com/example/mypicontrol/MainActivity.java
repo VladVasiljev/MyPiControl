@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void goToLEDLight() {
         CardView ledLight = findViewById(R.id.LEDLight);
         ledLight.setOnClickListener(new View.OnClickListener() {//Creating a click listenerBuzzer

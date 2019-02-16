@@ -26,20 +26,17 @@ public class FirebaseLEDControl extends AppCompatActivity {
 
         offButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 databaseReference.child("LEDValue").setValue(0);
             }
         });
 
         onButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 databaseReference.child("LEDValue").setValue(1);
             }
         });
-
-
-
 
 
     }

@@ -22,7 +22,8 @@ public class dweetData extends AppCompatActivity {
     private TextView mTextViewResult;
     private RequestQueue mQueue;
     int counter = 0;
-//Code obtained from https://codinginflow.com/tutorials/android/volley/simple-get-request edit by me (Vladislavs Vasiljevs) for my usecase
+
+    //Code obtained from https://codinginflow.com/tutorials/android/volley/simple-get-request edit by me (Vladislavs Vasiljevs) for my usecase
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,17 +58,16 @@ public class dweetData extends AppCompatActivity {
                                 counter++;
                                 String thingName = employee.getString("thing");
                                 String sensorData = employee.getString("content");
-                                if(counter == 6){
+                                if (counter == 6) {
                                     mTextViewResult.setText("");//Clearing text after 5 values have been added to the textview
                                     counter = 1;//Resetting counter value
                                 }
 
 
-                                    //Added a counter that adds a number next the the append
-                                    mTextViewResult.append(counter + ": " + thingName + ", " + ", " + sensorData + "\n\n");
-                                }
+                                //Added a counter that adds a number next the the append
+                                mTextViewResult.append(counter + ": " + thingName + ", " + ", " + sensorData + "\n\n");
                             }
-                        catch (JSONException e) {
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
