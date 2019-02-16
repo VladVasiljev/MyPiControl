@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "723951815646",
+    "firebase_url": "https://mypicontrol.firebaseio.com",
+    "project_id": "mypicontrol",
+    "storage_bucket": "mypicontrol.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723951815646:android:fe476e9d58863365",
+        "android_client_info": {
+          "package_name": "com.example.mypicontrol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723951815646-hj98o7v7jb0qv00ujjs4p1tjrn7kl8mb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mypicontrol",
+            "certificate_hash": "04934da55e288313073d326f1c56ebcb238cf58d"
+          }
+        },
+        {
+          "client_id": "723951815646-5hatuiua9eq2d7vdg39c2t8b01113f1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvPac-jt-eNc5RoKAUbsl50hUCMgifWW4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723951815646-5hatuiua9eq2d7vdg39c2t8b01113f1m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

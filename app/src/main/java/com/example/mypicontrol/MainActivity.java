@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
         goToBuzzer();
         goToLEDLight();
-        gotoDweetData();
+        goToDweetData();
+        gotToFirebaseBuzzerControl();
     }
 
     private void goToBuzzer() {//Method that brings us to Computer stat screen
@@ -43,12 +44,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void gotoDweetData() {//Method that brings us to Computer stat screen
+    private void goToDweetData() {//Method that brings us to Computer stat screen
         CardView dweetData = findViewById(R.id.dweetData);//computerStat equals computerStatCardView
         dweetData.setOnClickListener(new View.OnClickListener() {//Creating a click listenerBuzzer
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, dweetData.class);
+                intent.putExtra("info", "This is activity from card item index  ");
+                startActivity(intent);
+
+            }
+        });
+    }
+
+    private void gotToFirebaseBuzzerControl() {//Method that brings us to Computer stat screen
+        CardView firebasebuzzerControl = findViewById(R.id.firebaseBuzzerControl);//computerStat equals computerStatCardView
+        firebasebuzzerControl.setOnClickListener(new View.OnClickListener() {//Creating a click listenerBuzzer
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FirebaseBuzzerControl.class);
                 intent.putExtra("info", "This is activity from card item index  ");
                 startActivity(intent);
 
