@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="50dp"
     android:paddingRight="50dp"
-    tools:context=".FirebaseBuzzerControl">
+    tools:context=".FirebaseLEDControl">
 
     <Button
         android:id="@+id/offButton"
@@ -17,7 +17,7 @@
         android:layout_marginTop="113dp"
         android:layout_marginEnd="0dp"
         android:background="@drawable/redbutton"
-        android:text="Turn off Buzzer"
+        android:text="Turn off LED"
         android:textColor="@android:color/white" />
 
     <Button
@@ -29,6 +29,6 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/greenbutton"
-        android:text="Turn On Buzzer"
+        android:text="Turn On LED"
         android:textColor="@android:color/white" />
 </RelativeLayout>
