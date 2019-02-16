@@ -119,8 +119,7 @@ def listenerLED(publisherLED):
         else:
             publisher_state_for_led = False
             print "wasn't true 2"
-            grovepi.analogWrite(led,
-                                0 / 4)  # if the script crashes we can just press the off button and the sensors will turn off.
+            grovepi.analogWrite(led,0 / 4)  # if the script crashes we can just press the off button and the sensors will turn off.
 
 
 def led_publisher_method():
