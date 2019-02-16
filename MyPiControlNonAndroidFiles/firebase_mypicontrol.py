@@ -40,11 +40,11 @@ def getLight():
     lightValue = grovepi.analogRead(light_sensor)
     return lightValue
 
-def controlLED():
+def controlLED():#Code that allows us to turn on/off LED
      value = firebase.get(firebaseURL,'/LEDValue')
      grovepi.digitalWrite(led,value)
      
-def controlBuzzer():
+def controlBuzzer():#Code that allows us to turn on/off buzzer
      value = firebase.get(firebaseURL,'/BuzzerValue')
      digitalWrite(buzzer_pin,value)
 
@@ -56,10 +56,17 @@ def getSensorReadings():  # Function that pulls data from other methods and stor
     sensorReading["LightLevel"] = firebase.put(firebaseURL,'/LightLevel',getLight())
     return sensorReading
 
+def getSampleRate():
+    value = firebase.get(firebaseURL,'/SampleRateValue')
+    return value
+    
+
 result = firebase.get(firebaseURL,'/mypicontrol')
-print (result)
+
 
 while True:
-    #getSensorReadings()
     controlLED()
     controlBuzzer()
+    time.sleep(getSampleRate())
+    print (getSensorReadings())
+    
