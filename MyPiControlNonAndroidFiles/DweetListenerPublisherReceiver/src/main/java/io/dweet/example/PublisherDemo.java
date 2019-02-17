@@ -18,10 +18,11 @@ public class PublisherDemo {
 
     public static void main(String[] args) throws IOException, ParseException {
                   
-        String thingName = "mypistats3";
+        String thingName = "mypicontrolboardBuzzer";
             
         JsonObject json = new JsonObject();
-        json.addProperty("Test", "23");
+        json.addProperty("BuzzerStatus", "true");
+        json.addProperty("SampleRate",0);
         
         boolean success = DweetIO.publish(thingName, json);
         if (success){
